@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:01:55 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/15 17:04:50 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/11/15 20:23:52 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,16 @@ typedef struct s_stack
 	int		size;
 }			t_stack;
 
+typedef struct s_buffer_state
+{
+	char	data[BUFFER_SIZE];
+	int		i;
+	int		red;
+}			t_buffer_state;
+
 char		*get_next_line(int fd);
 int			append(t_stack *s, char c);
 void		*ft_memcpy(void *dest, const void *src, int n);
+char		*stack_to_line(t_stack *s);
 
 #endif

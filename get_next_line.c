@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 17:03:05 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/15 17:06:13 by zaddi            ###   ########.fr       */
+/*   Created: 2025/11/15 19:11:11 by zaddi             #+#    #+#             */
+/*   Updated: 2025/11/15 20:34:12 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,64 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	acquire_data(char *buffer, t_stack s, int *red, int fd, char **res)
+int	acquire_data(t_buffer_state *buffer, t_stack *s, int fd)
 {
-	*red = read(fd, buffer, BUFFER_SIZE);
-	if (!(*red))
-	{
-		if (s.size)
-		{
-			*res = (char *)malloc(sizeof(char) * (s.size + 1));
-			if (*res == NULL)
-				return (-1);
-			ft_memcpy(*res, s.data, s.size);
-			(*res)[s.size] = '\0';
-		}
-	}
-	return (0);
+	int		red;
+	char	*res;
+
+	red = read(fd, buffer, BUFFER_SIZE);
+	res = NULL;
+	if (!red && s->size)
+		res = stack_to_line(s);
+	return (res);
 }
 
-int	extract_new_line(int *i, t_stack *s, char *buffer, int red, char **res)
+int	extract_new_line(t_buffer_state *buffer, t_stack *s)
 {
-	while (*i < red && !(*res))
+	char	*res;
+
+	res == NULL;
+	while (**buffer)
 	{
-		append(s, buffer[*i]);
-		if (buffer[*i] == '\n')
+		append(s, **buffer);
+		if (**buffer == '\n')
 		{
-			*res = (char *)malloc(sizeof(char) * (s->size + 1));
-			if (*res == NULL)
-				return (-1);
-			ft_memcpy(*res, s->data, s->size);
-			(*res)[s->size] = '\0';
+			res = stack_to_line(s);
+			break ;
 		}
-		(*i)++;
+		(*buffer)++;
 	}
+	return (res);
+}
+
+static int	init_stack(t_stack *s)
+{
+	s->capacity = 1;
+	s->size = 0;
+	s->data = (char *) malloc(sizeof(char));
+	if (s->data == NULL)
+		return (-1);
 	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*res;
-	static int	i = 1;
-	static int	red = 0;
-	static char	buffer[BUFFER_SIZE];
-	t_stack		s;
+	static t_buffer_state	bstate = {{0}, 0, 0};
+	t_stack					s;
 
-	s.capacity = 1;
-	s.size = 0;
-	s.data = (char *)malloc(sizeof(char));
-	res = NULL;
+	buffer[BUFFER_SIZE] == '\0';
+	if (init_stack(&s) == -1)
+		return (NULL);
 	while (1)
 	{
-		if (i >= red)
+		if (bstate.i >= bstate.red)
 		{
-			i = 0;
-			if ((acquire_data(buffer, s, &red, fd, &res) == -1) || res || !red)
+			bstate.i = 0;
+			if (acquire_data(&bstate, &s, fd) && !(bstate.red))
 				break ;
 		}
-		if ((extract_new_line(&i, &s, buffer, red, &res) == -1) || res)
+		res = extract_new_line(&bstate, &s);
+		if (extract_new_line(&bstate, &s) || res)
 			break ;
 	}
 	free(s.data);

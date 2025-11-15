@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:05:17 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/15 17:05:44 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/11/15 20:06:04 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,16 @@ int	append(t_stack *s, char c)
 	s->data[s->size] = c;
 	s->size++;
 	return (1);
+}
+
+char	*stack_to_line(t_stack *s)
+{
+	char	*res;
+
+	res = (char *)malloc(sizeof(char) * (s->size + 1));
+	if (res == NULL)
+		return (NULL);
+	ft_memcpy(res, s->data, s->size);
+	res[s->size] = '\0';
+	return (res);
 }

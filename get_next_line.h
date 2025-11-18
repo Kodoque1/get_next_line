@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:01:55 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/18 14:28:41 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/11/18 22:36:12 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFFER_SIZE 42
 
 typedef struct s_stack
 {

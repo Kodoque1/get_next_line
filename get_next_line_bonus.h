@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:01:55 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/18 22:35:08 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/11/18 22:58:53 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <unistd.h>
 
 # define MAX_FDS 1024
-# define BUFFER_SIZE 42
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 typedef struct s_stack
 {

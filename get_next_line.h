@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:01:55 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/18 22:58:43 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/11/24 16:42:50 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+# define BUFFER_SIZE 42
 
 typedef struct s_stack
 {
@@ -41,4 +38,4 @@ void		*ft_memcpy(void *dest, const void *src, int n);
 char		*stack_to_line(t_stack *s);
 char		read_buffer(t_buffer_state *bstate, int fd);
 
-# endif
+#endif

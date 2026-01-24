@@ -1,4 +1,4 @@
-NAME := get_next_line.a
+NAME := libgnl.a
 LIBFT_PATH ?= ../libft
 SRC := get_next_line.c get_next_line_utils.c
 OBJ  := $(SRC:.c=.o)

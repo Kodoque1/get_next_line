@@ -6,25 +6,12 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:05:17 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/18 14:28:58 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/25 14:46:27 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
-
-void	*ft_memcpy(void *dest, const void *src, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((char *)dest)[i] = ((char *)src)[i];
-		i++;
-	}
-	return (dest);
-}
 
 int	append(t_stack *s, char c)
 {

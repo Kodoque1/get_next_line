@@ -29,15 +29,14 @@ int	read_processing(t_buffer_state *bstate, t_stack *s, int fd)
 	c = read_buffer(bstate, fd);
 	if (bstate->red > 0)
 	{
+		if (c == '\n')
+			return (0);
 		if (append(s, c) == -1)
 		{
 			free(s->data);
 			return (-1);
 		}
-		if (c == '\n')
-			return (0);
-		else
-			return (1);
+		return (1);
 	}
 	else if (bstate->red < 0)
 	{

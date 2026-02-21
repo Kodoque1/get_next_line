@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:11:11 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/18 14:27:43 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/21 22:36:33 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	read_processing(t_buffer_state *bstate, t_stack *s, int fd)
 	c = read_buffer(bstate, fd);
 	if (bstate->red > 0)
 	{
-		if (c == '\n')
-			return (0);
 		if (append(s, c) == -1)
 		{
 			free(s->data);
 			return (-1);
 		}
-		return (1);
+		if (c == '\n')
+			return (0);
+		else
+			return (1);
 	}
 	else if (bstate->red < 0)
 	{
